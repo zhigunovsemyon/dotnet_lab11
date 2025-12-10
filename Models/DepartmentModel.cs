@@ -10,10 +10,13 @@ public class DepartmentModel
 	private static readonly string _updateDepartmentCommand = @"UPDATE [dbo].[Departments] SET [name] = @Name, [facultyname] = @FacultyName WHERE [departmentid] = @Id";
 	private static readonly string _deleteDepartmentCommand = @"DELETE FROM [dbo].[Departments] WHERE [departmentid] = @Id";
 
+	/// <summary> ИД в БД </summary>
 	public Int16 Id { get; set; } = -1;
 
+	/// <summary> Название кафедры </summary>
 	public string Name { get; set; } = "";
 
+	/// <summary> Название факультета (может отсутствовать) </summary>
 	public string? FacultyName { get; set; } = null;
 
 	/// <summary> Удаление данной кафедры из БД </summary>
@@ -67,6 +70,8 @@ public class DepartmentModel
 		return list;
 	}
 
+	/// <summary> Добавление кафедры в БД </summary>
+	/// <param name="connection">Соединение с сервером</param>
 	public void AddToDB(SqlConnection connection)
 	{
 		using SqlCommand comm = new(_insertDepartmentCommand, connection);

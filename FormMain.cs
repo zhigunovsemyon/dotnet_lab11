@@ -21,23 +21,26 @@ public partial class FormMain : Form
 
 	public FormMain()
 	{
-		InitializeComponent();
+		this.InitializeComponent();
 		this.Text = this.tabControlMain.SelectedTab?.Text;
 	}
 
-	private void tabControlMain_Selecting(object sender, TabControlCancelEventArgs e)
+	/// <summary> Изменение названия по смене вкладки </summary>
+	private void tabControlMain_Selecting(object _, TabControlCancelEventArgs __)
 		=> this.Text = this.tabControlMain.SelectedTab?.Text;
 
-	private void buttonDepartmentsLoad_Click(object sender, EventArgs e)
-		=> this.LoadFromDB();
+	/// <summary> Нажатие на кнопку загрузки кафедр </summary>
+	private void buttonDepartmentsLoad_Click(object _, EventArgs __)
+		=> this.LoadDepartmentsFromDB();
 
-	private void LoadFromDB()
+	/// <summary> Загрузка кафедр БД </summary>
+	private void LoadDepartmentsFromDB()
 	{ 
 		this.listViewDepartments.Items.Clear();
 		try {
 			var list = DepartmentModel.List(this._sqlconn);
 			foreach (var item in list) {
-				this.listViewDepartments.Items.Add(departmentModelItem(item));
+				this.listViewDepartments.Items.Add(DepartmentModelItem(item));
 			}
 		}
 		catch (Exception ex) {
@@ -47,7 +50,10 @@ public partial class FormMain : Form
 		}
 	}
 
-	private static ListViewItem departmentModelItem(DepartmentModel model)
+	/// <summary> Преобразование модели кафедры в соответствующий элемент списка </summary>
+	/// <param name="model">Модель кафедры</param>
+	/// <returns>Элемент списка</returns>
+	private static ListViewItem DepartmentModelItem(DepartmentModel model)
 	{
 		ListViewItem item = new(model.Id.ToString());
 		item.SubItems.Add(model.Name);
@@ -57,7 +63,8 @@ public partial class FormMain : Form
 		return item;
 	}
 
-	private void buttonDepartmentsDelete_Click(object sender, EventArgs e)
+	/// <summary> Нажатие на клавишу удаления кафедры </summary>
+	private void buttonDepartmentsDelete_Click(object _, EventArgs __)
 	{
 		if (this.listViewDepartments.SelectedItems.Count <= 0) {
 			return;
@@ -80,7 +87,8 @@ public partial class FormMain : Form
 		}
 	}
 
-	private void buttonDepartmentsAdd_Click(object sender, EventArgs e)
+	/// <summary> Нажатие на клавишу добавления кафедры </summary>
+	private void buttonDepartmentsAdd_Click(object _, EventArgs __)
 	{
 		this._formDepartment.Model = new DepartmentModel();
 		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
@@ -94,12 +102,13 @@ public partial class FormMain : Form
 				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 		finally {
-			this.LoadFromDB();
+			this.LoadDepartmentsFromDB();
 		}
 
 	}
 
-	private void buttonDepartmentsUpdate_Click(object sender, EventArgs e)
+	/// <summary> Нажатие на клавишу обновления кафедры в БД </summary>
+	private void buttonDepartmentsUpdate_Click(object _, EventArgs __)
 	{
 		if (this.listViewDepartments.SelectedItems.Count <= 0) {
 			return;
@@ -115,8 +124,8 @@ public partial class FormMain : Form
 		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
 			return;
 		}
+		//todo
 
-
-		this.LoadFromDB();
+		this.LoadDepartmentsFromDB();
 	}
 }

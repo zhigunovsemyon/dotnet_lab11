@@ -49,14 +49,14 @@
 			textBoxFaculty.Location = new Point(12, 71);
 			textBoxFaculty.Name = "textBoxFaculty";
 			textBoxFaculty.Size = new Size(124, 23);
-			textBoxFaculty.TabIndex = 1;
+			textBoxFaculty.TabIndex = 2;
 			// 
 			// textBoxName
 			// 
 			textBoxName.Location = new Point(142, 27);
 			textBoxName.Name = "textBoxName";
 			textBoxName.Size = new Size(124, 23);
-			textBoxName.TabIndex = 2;
+			textBoxName.TabIndex = 1;
 			// 
 			// labelId
 			// 

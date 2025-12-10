@@ -6,6 +6,7 @@ public partial class FormDepartmentFill : Form
 {
 	private DepartmentModel _model = new();
 
+	/// <summary> Модель формы </summary>
 	public DepartmentModel Model
 	{
 		get => this._model;
@@ -16,6 +17,7 @@ public partial class FormDepartmentFill : Form
 		}
 	}
 
+	/// <summary> Загрузка полей из объекта кафедры </summary>
 	private void loadBoxes()
 	{
 		this.textBoxFaculty.Text = this._model.FacultyName;
@@ -23,6 +25,7 @@ public partial class FormDepartmentFill : Form
 		this.textBoxName.Text = this._model.Name;
 	}
 
+	/// <summary> Запись содержимого полей в объект кафедры </summary>
 	private void Save()
 	{
 		if (String.IsNullOrWhiteSpace(this.textBoxName.Text)) {
@@ -39,12 +42,10 @@ public partial class FormDepartmentFill : Form
 		this.Model.FacultyName = this.textBoxFaculty.Text.Trim();
 	}
 
-	public FormDepartmentFill()
-	{
-		InitializeComponent();
-	}
+	public FormDepartmentFill() => this.InitializeComponent();
 
-	private void buttonSave_Click(object sender, EventArgs e)
+	/// <summary> Нажатие на кнопку сохранить </summary>
+	private void buttonSave_Click(object _, EventArgs __)
 	{
 		this.Save();
 		this.Close();
