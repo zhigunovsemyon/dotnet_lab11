@@ -88,4 +88,25 @@ public class DepartmentModel
 			}
 		}
 	}
+
+	/// <summary> Обновление кафедры в БД </summary>
+	/// <param name="connection">Соединение с БД</param>
+	public void UpdateDB(SqlConnection connection)
+	{
+		using SqlCommand comm = new(_updateDepartmentCommand, connection);
+		comm.Parameters.Add("@Id", System.Data.SqlDbType.SmallInt).Value = this.Id;
+		comm.Parameters.Add("@Name", System.Data.SqlDbType.VarChar, 50).Value = this.Name;
+		comm.Parameters.Add("@FacultyName", System.Data.SqlDbType.VarChar, 50).Value = (object?)this.FacultyName ?? DBNull.Value;
+
+		try {
+			connection.Open();
+			comm.ExecuteNonQuery();
+		}
+		finally {
+			if (connection is not null &&
+				connection.State == System.Data.ConnectionState.Open) {
+				connection.Close();
+			}
+		}
+	}
 }

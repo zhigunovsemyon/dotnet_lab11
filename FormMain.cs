@@ -124,8 +124,16 @@ public partial class FormMain : Form
 		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
 			return;
 		}
-		//todo
 
-		this.LoadDepartmentsFromDB();
+		try {
+			this._formDepartment.Model.UpdateDB(this._sqlconn);
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при обновлении в базе кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.LoadDepartmentsFromDB();
+		}
 	}
 }
