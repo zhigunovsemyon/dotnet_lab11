@@ -1,7 +1,22 @@
+using dotnet_lab11.Models;
+using Microsoft.Data.SqlClient;
+
 namespace dotnet_lab11;
 
 public partial class FormMain : Form
 {
+	private const string _connectionString = "Data Source=localhost;"
+		+ "Initial Catalog=lab_dotnet;"
+		+ "Integrated Security=True;"
+		+ "Persist Security Info=False;"
+		+ "Pooling=False;"
+		+ "MultipleActiveResultSets=False;"
+		+ "Encrypt=False;"
+		+ "TrustServerCertificate=True";
+	
+	private readonly SqlConnection _sqlconn = new(_connectionString);
+
+
 	public FormMain()
 	{
 		InitializeComponent();
@@ -10,4 +25,29 @@ public partial class FormMain : Form
 
 	private void tabControlMain_Selecting(object sender, TabControlCancelEventArgs e)
 		=> this.Text = this.tabControlMain.SelectedTab?.Text;
+
+	private void buttonDepartmentsLoad_Click(object sender, EventArgs e)
+	{
+		this.listViewDepartments.Items.Clear();
+		try {
+			var list = DepartmentModel.List(this._sqlconn);
+			foreach (var item in list) {
+				this.listViewDepartments.Items.Add(departmentModelItem(item));
+			}
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при загрузке базы кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return;
+		}
+	}
+
+	private static ListViewItem departmentModelItem (DepartmentModel model)
+	{
+		ListViewItem item = new (model.Id.ToString());
+		item.SubItems.Add(model.Name);
+		item.SubItems.Add(model.FacultyName);
+
+		return item;
+	}
 }

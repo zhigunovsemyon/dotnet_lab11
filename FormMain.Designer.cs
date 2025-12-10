@@ -226,6 +226,7 @@
 			buttonDepartmentsLoad.TabIndex = 1;
 			buttonDepartmentsLoad.Text = "Загрузить";
 			buttonDepartmentsLoad.UseVisualStyleBackColor = true;
+			buttonDepartmentsLoad.Click += buttonDepartmentsLoad_Click;
 			// 
 			// buttonDepartmentsUpdate
 			// 
