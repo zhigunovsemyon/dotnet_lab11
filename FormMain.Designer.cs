@@ -40,6 +40,7 @@
 			tableLayoutPanel1 = new TableLayoutPanel();
 			pictureBoxMajor = new PictureBox();
 			labelPic = new Label();
+			listViewMajors = new ListView();
 			tabPageDepartments = new TabPage();
 			tableLayoutPanelDepartments = new TableLayoutPanel();
 			tableLayoutPanelDepartmentsButtons = new TableLayoutPanel();
@@ -51,7 +52,10 @@
 			columnId = new ColumnHeader();
 			columnName = new ColumnHeader();
 			columnFacultyName = new ColumnHeader();
-			listViewMajors = new ListView();
+			columnHeaderId = new ColumnHeader();
+			columnHeaderName = new ColumnHeader();
+			columnHeaderDepartmentId = new ColumnHeader();
+			columnHeaderPic = new ColumnHeader();
 			tabControlMain.SuspendLayout();
 			tabPageMajors.SuspendLayout();
 			tableLayoutPanelMajors.SuspendLayout();
@@ -222,6 +226,20 @@
 			labelPic.TabIndex = 0;
 			labelPic.Text = "Изображение специальности";
 			// 
+			// listViewMajors
+			// 
+			listViewMajors.Columns.AddRange(new ColumnHeader[] { columnHeaderId, columnHeaderName, columnHeaderDepartmentId, columnHeaderPic });
+			listViewMajors.Dock = DockStyle.Fill;
+			listViewMajors.FullRowSelect = true;
+			listViewMajors.GridLines = true;
+			listViewMajors.Location = new Point(0, 0);
+			listViewMajors.MultiSelect = false;
+			listViewMajors.Name = "listViewMajors";
+			listViewMajors.Size = new Size(514, 370);
+			listViewMajors.TabIndex = 0;
+			listViewMajors.UseCompatibleStateImageBehavior = false;
+			listViewMajors.View = View.Details;
+			// 
 			// tabPageDepartments
 			// 
 			tabPageDepartments.Controls.Add(tableLayoutPanelDepartments);
@@ -340,18 +358,21 @@
 			columnFacultyName.Text = "Факультет";
 			columnFacultyName.Width = 150;
 			// 
-			// listViewMajors
+			// columnHeaderId
 			// 
-			listViewMajors.Dock = DockStyle.Fill;
-			listViewMajors.FullRowSelect = true;
-			listViewMajors.GridLines = true;
-			listViewMajors.Location = new Point(0, 0);
-			listViewMajors.MultiSelect = false;
-			listViewMajors.Name = "listViewMajors";
-			listViewMajors.Size = new Size(514, 370);
-			listViewMajors.TabIndex = 0;
-			listViewMajors.UseCompatibleStateImageBehavior = false;
-			listViewMajors.View = View.Details;
+			columnHeaderId.Text = "ИД";
+			// 
+			// columnHeaderName
+			// 
+			columnHeaderName.Text = "Имя";
+			// 
+			// columnHeaderDepartmentId
+			// 
+			columnHeaderDepartmentId.Text = "ИД кафедры";
+			// 
+			// columnHeaderPic
+			// 
+			columnHeaderPic.Text = "Картинка";
 			// 
 			// FormMain
 			// 
@@ -406,5 +427,9 @@
 		private PictureBox pictureBoxMajor;
 		private Label labelPic;
 		private ListView listViewMajors;
+		private ColumnHeader columnHeaderId;
+		private ColumnHeader columnHeaderName;
+		private ColumnHeader columnHeaderDepartmentId;
+		private ColumnHeader columnHeaderPic;
 	}
 }
