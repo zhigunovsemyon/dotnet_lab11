@@ -35,7 +35,7 @@ public partial class FormMain : Form
 
 	/// <summary> Загрузка кафедр БД </summary>
 	private void LoadDepartmentsFromDB()
-	{ 
+	{
 		this.listViewDepartments.Items.Clear();
 		try {
 			var list = DepartmentModel.List(this._sqlconn);
@@ -135,5 +135,25 @@ public partial class FormMain : Form
 		finally {
 			this.LoadDepartmentsFromDB();
 		}
+	}
+
+	private void buttonMajorLoad_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void buttonMajorAdd_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void buttonMajorDelete_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void buttonMajorUpdate_Click(object sender, EventArgs e)
+	{
+
 	}
 }

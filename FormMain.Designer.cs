@@ -36,6 +36,10 @@
 			buttonMajorAdd = new Button();
 			buttonMajorLoad = new Button();
 			buttonMajorUpdate = new Button();
+			splitContainerMajors = new SplitContainer();
+			tableLayoutPanel1 = new TableLayoutPanel();
+			pictureBoxMajor = new PictureBox();
+			labelPic = new Label();
 			tabPageDepartments = new TabPage();
 			tableLayoutPanelDepartments = new TableLayoutPanel();
 			tableLayoutPanelDepartmentsButtons = new TableLayoutPanel();
@@ -47,10 +51,17 @@
 			columnId = new ColumnHeader();
 			columnName = new ColumnHeader();
 			columnFacultyName = new ColumnHeader();
+			listViewMajors = new ListView();
 			tabControlMain.SuspendLayout();
 			tabPageMajors.SuspendLayout();
 			tableLayoutPanelMajors.SuspendLayout();
 			tableLayoutPanelMajorsButtons.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)splitContainerMajors).BeginInit();
+			splitContainerMajors.Panel1.SuspendLayout();
+			splitContainerMajors.Panel2.SuspendLayout();
+			splitContainerMajors.SuspendLayout();
+			tableLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBoxMajor).BeginInit();
 			tabPageDepartments.SuspendLayout();
 			tableLayoutPanelDepartments.SuspendLayout();
 			tableLayoutPanelDepartmentsButtons.SuspendLayout();
@@ -84,6 +95,7 @@
 			tableLayoutPanelMajors.ColumnCount = 1;
 			tableLayoutPanelMajors.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			tableLayoutPanelMajors.Controls.Add(tableLayoutPanelMajorsButtons, 0, 1);
+			tableLayoutPanelMajors.Controls.Add(splitContainerMajors, 0, 0);
 			tableLayoutPanelMajors.Dock = DockStyle.Fill;
 			tableLayoutPanelMajors.Location = new Point(3, 3);
 			tableLayoutPanelMajors.Name = "tableLayoutPanelMajors";
@@ -121,6 +133,7 @@
 			buttonMajorDelete.TabIndex = 3;
 			buttonMajorDelete.Text = "Удалить";
 			buttonMajorDelete.UseVisualStyleBackColor = true;
+			buttonMajorDelete.Click += buttonMajorDelete_Click;
 			// 
 			// buttonMajorAdd
 			// 
@@ -131,6 +144,7 @@
 			buttonMajorAdd.TabIndex = 2;
 			buttonMajorAdd.Text = "Добавить";
 			buttonMajorAdd.UseVisualStyleBackColor = true;
+			buttonMajorAdd.Click += buttonMajorAdd_Click;
 			// 
 			// buttonMajorLoad
 			// 
@@ -141,6 +155,7 @@
 			buttonMajorLoad.TabIndex = 1;
 			buttonMajorLoad.Text = "Загрузить";
 			buttonMajorLoad.UseVisualStyleBackColor = true;
+			buttonMajorLoad.Click += buttonMajorLoad_Click;
 			// 
 			// buttonMajorUpdate
 			// 
@@ -151,6 +166,61 @@
 			buttonMajorUpdate.TabIndex = 0;
 			buttonMajorUpdate.Text = "Обновить";
 			buttonMajorUpdate.UseVisualStyleBackColor = true;
+			buttonMajorUpdate.Click += buttonMajorUpdate_Click;
+			// 
+			// splitContainerMajors
+			// 
+			splitContainerMajors.BorderStyle = BorderStyle.FixedSingle;
+			splitContainerMajors.Dock = DockStyle.Fill;
+			splitContainerMajors.Location = new Point(3, 3);
+			splitContainerMajors.Name = "splitContainerMajors";
+			// 
+			// splitContainerMajors.Panel1
+			// 
+			splitContainerMajors.Panel1.Controls.Add(tableLayoutPanel1);
+			splitContainerMajors.Panel1MinSize = 100;
+			// 
+			// splitContainerMajors.Panel2
+			// 
+			splitContainerMajors.Panel2.Controls.Add(listViewMajors);
+			splitContainerMajors.Size = new Size(780, 372);
+			splitContainerMajors.SplitterDistance = 260;
+			splitContainerMajors.TabIndex = 1;
+			// 
+			// tableLayoutPanel1
+			// 
+			tableLayoutPanel1.ColumnCount = 1;
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			tableLayoutPanel1.Controls.Add(pictureBoxMajor, 0, 1);
+			tableLayoutPanel1.Controls.Add(labelPic, 0, 0);
+			tableLayoutPanel1.Dock = DockStyle.Fill;
+			tableLayoutPanel1.Location = new Point(0, 0);
+			tableLayoutPanel1.Name = "tableLayoutPanel1";
+			tableLayoutPanel1.RowCount = 2;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 6.72043F));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 93.27957F));
+			tableLayoutPanel1.Size = new Size(258, 370);
+			tableLayoutPanel1.TabIndex = 2;
+			// 
+			// pictureBoxMajor
+			// 
+			pictureBoxMajor.Dock = DockStyle.Fill;
+			pictureBoxMajor.Location = new Point(3, 27);
+			pictureBoxMajor.Name = "pictureBoxMajor";
+			pictureBoxMajor.Size = new Size(252, 340);
+			pictureBoxMajor.TabIndex = 1;
+			pictureBoxMajor.TabStop = false;
+			// 
+			// labelPic
+			// 
+			labelPic.AutoEllipsis = true;
+			labelPic.AutoSize = true;
+			labelPic.Dock = DockStyle.Fill;
+			labelPic.Location = new Point(3, 0);
+			labelPic.Name = "labelPic";
+			labelPic.Size = new Size(252, 24);
+			labelPic.TabIndex = 0;
+			labelPic.Text = "Изображение специальности";
 			// 
 			// tabPageDepartments
 			// 
@@ -270,6 +340,19 @@
 			columnFacultyName.Text = "Факультет";
 			columnFacultyName.Width = 150;
 			// 
+			// listViewMajors
+			// 
+			listViewMajors.Dock = DockStyle.Fill;
+			listViewMajors.FullRowSelect = true;
+			listViewMajors.GridLines = true;
+			listViewMajors.Location = new Point(0, 0);
+			listViewMajors.MultiSelect = false;
+			listViewMajors.Name = "listViewMajors";
+			listViewMajors.Size = new Size(514, 370);
+			listViewMajors.TabIndex = 0;
+			listViewMajors.UseCompatibleStateImageBehavior = false;
+			listViewMajors.View = View.Details;
+			// 
 			// FormMain
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -284,6 +367,13 @@
 			tabPageMajors.ResumeLayout(false);
 			tableLayoutPanelMajors.ResumeLayout(false);
 			tableLayoutPanelMajorsButtons.ResumeLayout(false);
+			splitContainerMajors.Panel1.ResumeLayout(false);
+			splitContainerMajors.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)splitContainerMajors).EndInit();
+			splitContainerMajors.ResumeLayout(false);
+			tableLayoutPanel1.ResumeLayout(false);
+			tableLayoutPanel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBoxMajor).EndInit();
 			tabPageDepartments.ResumeLayout(false);
 			tableLayoutPanelDepartments.ResumeLayout(false);
 			tableLayoutPanelDepartmentsButtons.ResumeLayout(false);
@@ -311,5 +401,10 @@
 		private ColumnHeader columnId;
 		private ColumnHeader columnName;
 		private ColumnHeader columnFacultyName;
+		private SplitContainer splitContainerMajors;
+		private TableLayoutPanel tableLayoutPanel1;
+		private PictureBox pictureBoxMajor;
+		private Label labelPic;
+		private ListView listViewMajors;
 	}
 }
