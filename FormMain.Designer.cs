@@ -217,6 +217,7 @@
 			buttonDepartmentsAdd.TabIndex = 2;
 			buttonDepartmentsAdd.Text = "Добавить";
 			buttonDepartmentsAdd.UseVisualStyleBackColor = true;
+			buttonDepartmentsAdd.Click += buttonDepartmentsAdd_Click;
 			// 
 			// buttonDepartmentsLoad
 			// 
@@ -238,6 +239,7 @@
 			buttonDepartmentsUpdate.TabIndex = 0;
 			buttonDepartmentsUpdate.Text = "Обновить";
 			buttonDepartmentsUpdate.UseVisualStyleBackColor = true;
+			buttonDepartmentsUpdate.Click += buttonDepartmentsUpdate_Click;
 			// 
 			// listViewDepartments
 			// 

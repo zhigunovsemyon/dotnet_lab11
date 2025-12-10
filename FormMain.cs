@@ -17,6 +17,7 @@ public partial class FormMain : Form
 
 	private readonly SqlConnection _sqlconn = new(_connectionString);
 
+	private readonly FormDepartmentFill _formDepartment = new();
 
 	public FormMain()
 	{
@@ -60,18 +61,45 @@ public partial class FormMain : Form
 		}
 
 		var lvItemIdx = this.listViewDepartments.SelectedItems[0].Index;
-		var department = this.listViewDepartments.Items[lvItemIdx].Tag 
+		var department = this.listViewDepartments.Items[lvItemIdx].Tag
 			as DepartmentModel;
 		Debug.Assert(department != null);
 
 		try {
 			department.DeleteFromDB(this._sqlconn);
-		} catch (Exception ex){
+		}
+		catch (Exception ex) {
 			MessageBox.Show($"Ошибка при загрузке базы кафедр:\r\n{ex.Message}",
 				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 		finally {
 			this.listViewDepartments.Items.RemoveAt(lvItemIdx);
+		}
+	}
+
+	private void buttonDepartmentsAdd_Click(object sender, EventArgs e)
+	{
+		this._formDepartment.Model = new DepartmentModel();
+		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
+			return;
+		}
+	}
+
+	private void buttonDepartmentsUpdate_Click(object sender, EventArgs e)
+	{
+		if (this.listViewDepartments.SelectedItems.Count <= 0) {
+			return;
+		}
+
+		var lvItemIdx = this.listViewDepartments.SelectedItems[0].Index;
+		var department = this.listViewDepartments.Items[lvItemIdx].Tag
+			as DepartmentModel;
+		Debug.Assert(department != null);
+
+		this._formDepartment.Model = department;
+
+		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
+			return;
 		}
 	}
 }
