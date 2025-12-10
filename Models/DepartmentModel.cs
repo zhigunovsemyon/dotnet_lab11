@@ -16,6 +16,24 @@ public class DepartmentModel
 
 	public string? FacultyName { get; set; } = null;
 
+	/// <summary> Удаление данной кафедры из БД </summary>
+	/// <param name="connection">Соединение с сервером</param>
+	public void DeleteFromDB (SqlConnection connection)
+	{
+		using SqlCommand comm = new(_deleteDepartmentCommand, connection);
+		comm.Parameters.Add("@Id", System.Data.SqlDbType.SmallInt).Value = this.Id;
+		try {
+			connection.Open();
+			comm.ExecuteNonQuery();
+		}
+		finally {
+			if (connection is not null &&
+				connection.State == System.Data.ConnectionState.Open) {
+				connection.Close();
+			}
+		}
+	}
+
 	/// <summary> Получение списка кафедр </summary>
 	/// <param name="connection">Соединение с сервером</param>
 	/// <returns>Список кафедр</returns>
@@ -23,13 +41,9 @@ public class DepartmentModel
 	{
 		List<DepartmentModel> list = [];
 
-		using SqlCommand comm = new();
+		using SqlCommand comm = new(_selectDepartmentsCommand, connection);
 
 		try {
-			comm.Connection = connection;
-			comm.CommandText = _selectDepartmentsCommand;
-			comm.CommandType = System.Data.CommandType.Text;
-
 			connection.Open();
 			var reader = comm.ExecuteReader();
 			while (reader.Read()) {

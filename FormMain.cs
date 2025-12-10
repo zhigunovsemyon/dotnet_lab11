@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using dotnet_lab11.Models;
 using Microsoft.Data.SqlClient;
 
@@ -13,7 +14,7 @@ public partial class FormMain : Form
 		+ "MultipleActiveResultSets=False;"
 		+ "Encrypt=False;"
 		+ "TrustServerCertificate=True";
-	
+
 	private readonly SqlConnection _sqlconn = new(_connectionString);
 
 
@@ -42,12 +43,35 @@ public partial class FormMain : Form
 		}
 	}
 
-	private static ListViewItem departmentModelItem (DepartmentModel model)
+	private static ListViewItem departmentModelItem(DepartmentModel model)
 	{
-		ListViewItem item = new (model.Id.ToString());
+		ListViewItem item = new(model.Id.ToString());
 		item.SubItems.Add(model.Name);
 		item.SubItems.Add(model.FacultyName);
+		item.Tag = model;
 
 		return item;
+	}
+
+	private void buttonDepartmentsDelete_Click(object sender, EventArgs e)
+	{
+		if (this.listViewDepartments.SelectedItems.Count <= 0) {
+			return;
+		}
+
+		var lvItemIdx = this.listViewDepartments.SelectedItems[0].Index;
+		var department = this.listViewDepartments.Items[lvItemIdx].Tag 
+			as DepartmentModel;
+		Debug.Assert(department != null);
+
+		try {
+			department.DeleteFromDB(this._sqlconn);
+		} catch (Exception ex){
+			MessageBox.Show($"Ошибка при загрузке базы кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.listViewDepartments.Items.RemoveAt(lvItemIdx);
+		}
 	}
 }

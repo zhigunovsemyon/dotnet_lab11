@@ -206,6 +206,7 @@
 			buttonDepartmentsDelete.TabIndex = 3;
 			buttonDepartmentsDelete.Text = "Удалить";
 			buttonDepartmentsDelete.UseVisualStyleBackColor = true;
+			buttonDepartmentsDelete.Click += buttonDepartmentsDelete_Click;
 			// 
 			// buttonDepartmentsAdd
 			// 
@@ -242,7 +243,10 @@
 			// 
 			listViewDepartments.Columns.AddRange(new ColumnHeader[] { columnId, columnName, columnFacultyName });
 			listViewDepartments.Dock = DockStyle.Fill;
+			listViewDepartments.FullRowSelect = true;
+			listViewDepartments.GridLines = true;
 			listViewDepartments.Location = new Point(3, 3);
+			listViewDepartments.MultiSelect = false;
 			listViewDepartments.Name = "listViewDepartments";
 			listViewDepartments.Size = new Size(780, 372);
 			listViewDepartments.TabIndex = 1;
