@@ -30,6 +30,12 @@
 		{
 			tabControlMain = new TabControl();
 			tabPageMajors = new TabPage();
+			tableLayoutPanelMajors = new TableLayoutPanel();
+			tableLayoutPanelMajorsButtons = new TableLayoutPanel();
+			buttonMajorDelete = new Button();
+			buttonMajorAdd = new Button();
+			buttonMajorLoad = new Button();
+			buttonMajorUpdate = new Button();
 			tabPageDepartments = new TabPage();
 			tableLayoutPanelDepartments = new TableLayoutPanel();
 			tableLayoutPanelDepartmentsButtons = new TableLayoutPanel();
@@ -37,19 +43,17 @@
 			buttonDepartmentsAdd = new Button();
 			buttonDepartmentsLoad = new Button();
 			buttonDepartmentsUpdate = new Button();
-			tableLayoutPanelMajors = new TableLayoutPanel();
-			tableLayoutPanelMajorsButtons = new TableLayoutPanel();
-			buttonMajorDelete = new Button();
-			buttonMajorAdd = new Button();
-			buttonMajorLoad = new Button();
-			buttonMajorUpdate = new Button();
+			listViewDepartments = new ListView();
+			columnId = new ColumnHeader();
+			columnName = new ColumnHeader();
+			columnFacultyName = new ColumnHeader();
 			tabControlMain.SuspendLayout();
 			tabPageMajors.SuspendLayout();
+			tableLayoutPanelMajors.SuspendLayout();
+			tableLayoutPanelMajorsButtons.SuspendLayout();
 			tabPageDepartments.SuspendLayout();
 			tableLayoutPanelDepartments.SuspendLayout();
 			tableLayoutPanelDepartmentsButtons.SuspendLayout();
-			tableLayoutPanelMajors.SuspendLayout();
-			tableLayoutPanelMajorsButtons.SuspendLayout();
 			SuspendLayout();
 			// 
 			// tabControlMain
@@ -74,90 +78,6 @@
 			tabPageMajors.TabIndex = 0;
 			tabPageMajors.Text = "Специальности";
 			tabPageMajors.UseVisualStyleBackColor = true;
-			// 
-			// tabPageDepartments
-			// 
-			tabPageDepartments.Controls.Add(tableLayoutPanelDepartments);
-			tabPageDepartments.Location = new Point(4, 24);
-			tabPageDepartments.Name = "tabPageDepartments";
-			tabPageDepartments.Padding = new Padding(3);
-			tabPageDepartments.Size = new Size(792, 422);
-			tabPageDepartments.TabIndex = 1;
-			tabPageDepartments.Text = "Кафедры";
-			tabPageDepartments.UseVisualStyleBackColor = true;
-			// 
-			// tableLayoutPanelDepartments
-			// 
-			tableLayoutPanelDepartments.ColumnCount = 1;
-			tableLayoutPanelDepartments.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanelDepartments.Controls.Add(tableLayoutPanelDepartmentsButtons, 0, 1);
-			tableLayoutPanelDepartments.Dock = DockStyle.Fill;
-			tableLayoutPanelDepartments.Location = new Point(3, 3);
-			tableLayoutPanelDepartments.Name = "tableLayoutPanelDepartments";
-			tableLayoutPanelDepartments.RowCount = 2;
-			tableLayoutPanelDepartments.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
-			tableLayoutPanelDepartments.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-			tableLayoutPanelDepartments.Size = new Size(786, 416);
-			tableLayoutPanelDepartments.TabIndex = 0;
-			// 
-			// tableLayoutPanelDepartmentsButtons
-			// 
-			tableLayoutPanelDepartmentsButtons.ColumnCount = 4;
-			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsDelete, 2, 0);
-			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsAdd, 1, 0);
-			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsLoad, 0, 0);
-			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsUpdate, 3, 0);
-			tableLayoutPanelDepartmentsButtons.Dock = DockStyle.Fill;
-			tableLayoutPanelDepartmentsButtons.Location = new Point(3, 381);
-			tableLayoutPanelDepartmentsButtons.Name = "tableLayoutPanelDepartmentsButtons";
-			tableLayoutPanelDepartmentsButtons.RowCount = 1;
-			tableLayoutPanelDepartmentsButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanelDepartmentsButtons.Size = new Size(780, 32);
-			tableLayoutPanelDepartmentsButtons.TabIndex = 0;
-			// 
-			// buttonDepartmentsDelete
-			// 
-			buttonDepartmentsDelete.Dock = DockStyle.Fill;
-			buttonDepartmentsDelete.Location = new Point(393, 3);
-			buttonDepartmentsDelete.Name = "buttonDepartmentsDelete";
-			buttonDepartmentsDelete.Size = new Size(189, 26);
-			buttonDepartmentsDelete.TabIndex = 3;
-			buttonDepartmentsDelete.Text = "Удалить";
-			buttonDepartmentsDelete.UseVisualStyleBackColor = true;
-			// 
-			// buttonDepartmentsAdd
-			// 
-			buttonDepartmentsAdd.Dock = DockStyle.Fill;
-			buttonDepartmentsAdd.Location = new Point(198, 3);
-			buttonDepartmentsAdd.Name = "buttonDepartmentsAdd";
-			buttonDepartmentsAdd.Size = new Size(189, 26);
-			buttonDepartmentsAdd.TabIndex = 2;
-			buttonDepartmentsAdd.Text = "Добавить";
-			buttonDepartmentsAdd.UseVisualStyleBackColor = true;
-			// 
-			// buttonDepartmentsLoad
-			// 
-			buttonDepartmentsLoad.Dock = DockStyle.Fill;
-			buttonDepartmentsLoad.Location = new Point(3, 3);
-			buttonDepartmentsLoad.Name = "buttonDepartmentsLoad";
-			buttonDepartmentsLoad.Size = new Size(189, 26);
-			buttonDepartmentsLoad.TabIndex = 1;
-			buttonDepartmentsLoad.Text = "Загрузить";
-			buttonDepartmentsLoad.UseVisualStyleBackColor = true;
-			// 
-			// buttonDepartmentsUpdate
-			// 
-			buttonDepartmentsUpdate.Dock = DockStyle.Fill;
-			buttonDepartmentsUpdate.Location = new Point(588, 3);
-			buttonDepartmentsUpdate.Name = "buttonDepartmentsUpdate";
-			buttonDepartmentsUpdate.Size = new Size(189, 26);
-			buttonDepartmentsUpdate.TabIndex = 0;
-			buttonDepartmentsUpdate.Text = "Обновить";
-			buttonDepartmentsUpdate.UseVisualStyleBackColor = true;
 			// 
 			// tableLayoutPanelMajors
 			// 
@@ -232,6 +152,117 @@
 			buttonMajorUpdate.Text = "Обновить";
 			buttonMajorUpdate.UseVisualStyleBackColor = true;
 			// 
+			// tabPageDepartments
+			// 
+			tabPageDepartments.Controls.Add(tableLayoutPanelDepartments);
+			tabPageDepartments.Location = new Point(4, 24);
+			tabPageDepartments.Name = "tabPageDepartments";
+			tabPageDepartments.Padding = new Padding(3);
+			tabPageDepartments.Size = new Size(792, 422);
+			tabPageDepartments.TabIndex = 1;
+			tabPageDepartments.Text = "Кафедры";
+			tabPageDepartments.UseVisualStyleBackColor = true;
+			// 
+			// tableLayoutPanelDepartments
+			// 
+			tableLayoutPanelDepartments.ColumnCount = 1;
+			tableLayoutPanelDepartments.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanelDepartments.Controls.Add(tableLayoutPanelDepartmentsButtons, 0, 1);
+			tableLayoutPanelDepartments.Controls.Add(listViewDepartments, 0, 0);
+			tableLayoutPanelDepartments.Dock = DockStyle.Fill;
+			tableLayoutPanelDepartments.Location = new Point(3, 3);
+			tableLayoutPanelDepartments.Name = "tableLayoutPanelDepartments";
+			tableLayoutPanelDepartments.RowCount = 2;
+			tableLayoutPanelDepartments.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
+			tableLayoutPanelDepartments.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+			tableLayoutPanelDepartments.Size = new Size(786, 416);
+			tableLayoutPanelDepartments.TabIndex = 0;
+			// 
+			// tableLayoutPanelDepartmentsButtons
+			// 
+			tableLayoutPanelDepartmentsButtons.ColumnCount = 4;
+			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+			tableLayoutPanelDepartmentsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsDelete, 2, 0);
+			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsAdd, 1, 0);
+			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsLoad, 0, 0);
+			tableLayoutPanelDepartmentsButtons.Controls.Add(buttonDepartmentsUpdate, 3, 0);
+			tableLayoutPanelDepartmentsButtons.Dock = DockStyle.Fill;
+			tableLayoutPanelDepartmentsButtons.Location = new Point(3, 381);
+			tableLayoutPanelDepartmentsButtons.Name = "tableLayoutPanelDepartmentsButtons";
+			tableLayoutPanelDepartmentsButtons.RowCount = 1;
+			tableLayoutPanelDepartmentsButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanelDepartmentsButtons.Size = new Size(780, 32);
+			tableLayoutPanelDepartmentsButtons.TabIndex = 0;
+			// 
+			// buttonDepartmentsDelete
+			// 
+			buttonDepartmentsDelete.Dock = DockStyle.Fill;
+			buttonDepartmentsDelete.Location = new Point(393, 3);
+			buttonDepartmentsDelete.Name = "buttonDepartmentsDelete";
+			buttonDepartmentsDelete.Size = new Size(189, 26);
+			buttonDepartmentsDelete.TabIndex = 3;
+			buttonDepartmentsDelete.Text = "Удалить";
+			buttonDepartmentsDelete.UseVisualStyleBackColor = true;
+			// 
+			// buttonDepartmentsAdd
+			// 
+			buttonDepartmentsAdd.Dock = DockStyle.Fill;
+			buttonDepartmentsAdd.Location = new Point(198, 3);
+			buttonDepartmentsAdd.Name = "buttonDepartmentsAdd";
+			buttonDepartmentsAdd.Size = new Size(189, 26);
+			buttonDepartmentsAdd.TabIndex = 2;
+			buttonDepartmentsAdd.Text = "Добавить";
+			buttonDepartmentsAdd.UseVisualStyleBackColor = true;
+			// 
+			// buttonDepartmentsLoad
+			// 
+			buttonDepartmentsLoad.Dock = DockStyle.Fill;
+			buttonDepartmentsLoad.Location = new Point(3, 3);
+			buttonDepartmentsLoad.Name = "buttonDepartmentsLoad";
+			buttonDepartmentsLoad.Size = new Size(189, 26);
+			buttonDepartmentsLoad.TabIndex = 1;
+			buttonDepartmentsLoad.Text = "Загрузить";
+			buttonDepartmentsLoad.UseVisualStyleBackColor = true;
+			// 
+			// buttonDepartmentsUpdate
+			// 
+			buttonDepartmentsUpdate.Dock = DockStyle.Fill;
+			buttonDepartmentsUpdate.Location = new Point(588, 3);
+			buttonDepartmentsUpdate.Name = "buttonDepartmentsUpdate";
+			buttonDepartmentsUpdate.Size = new Size(189, 26);
+			buttonDepartmentsUpdate.TabIndex = 0;
+			buttonDepartmentsUpdate.Text = "Обновить";
+			buttonDepartmentsUpdate.UseVisualStyleBackColor = true;
+			// 
+			// listViewDepartments
+			// 
+			listViewDepartments.Columns.AddRange(new ColumnHeader[] { columnId, columnName, columnFacultyName });
+			listViewDepartments.Dock = DockStyle.Fill;
+			listViewDepartments.Location = new Point(3, 3);
+			listViewDepartments.Name = "listViewDepartments";
+			listViewDepartments.Size = new Size(780, 372);
+			listViewDepartments.TabIndex = 1;
+			listViewDepartments.UseCompatibleStateImageBehavior = false;
+			listViewDepartments.View = View.Details;
+			// 
+			// columnId
+			// 
+			columnId.Text = "ИД";
+			columnId.Width = 40;
+			// 
+			// columnName
+			// 
+			columnName.Text = "Название";
+			columnName.Width = 150;
+			// 
+			// columnFacultyName
+			// 
+			columnFacultyName.Text = "Факультет";
+			columnFacultyName.Width = 150;
+			// 
 			// FormMain
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -244,11 +275,11 @@
 			Text = "Form1";
 			tabControlMain.ResumeLayout(false);
 			tabPageMajors.ResumeLayout(false);
+			tableLayoutPanelMajors.ResumeLayout(false);
+			tableLayoutPanelMajorsButtons.ResumeLayout(false);
 			tabPageDepartments.ResumeLayout(false);
 			tableLayoutPanelDepartments.ResumeLayout(false);
 			tableLayoutPanelDepartmentsButtons.ResumeLayout(false);
-			tableLayoutPanelMajors.ResumeLayout(false);
-			tableLayoutPanelMajorsButtons.ResumeLayout(false);
 			ResumeLayout(false);
 		}
 
@@ -269,5 +300,9 @@
 		private Button buttonMajorAdd;
 		private Button buttonMajorLoad;
 		private Button buttonMajorUpdate;
+		private ListView listViewDepartments;
+		private ColumnHeader columnId;
+		private ColumnHeader columnName;
+		private ColumnHeader columnFacultyName;
 	}
 }
