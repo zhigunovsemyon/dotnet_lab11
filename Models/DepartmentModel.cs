@@ -51,7 +51,7 @@ public class DepartmentModel
 				{
 					Id = (Int16)reader["departmentid"],
 					Name = (String)reader["name"],
-					FacultyName = (String)reader["facultyname"]
+					FacultyName = reader["facultyname"] as string 
 				};
 
 				list.Add(newDepartment);
@@ -67,5 +67,20 @@ public class DepartmentModel
 		return list;
 	}
 
-
+	public void AddToDB(SqlConnection connection)
+	{
+		using SqlCommand comm = new(_insertDepartmentCommand, connection);
+		comm.Parameters.Add("@Name", System.Data.SqlDbType.VarChar, 50).Value = this.Name;
+		comm.Parameters.Add("@FacultyName", System.Data.SqlDbType.VarChar, 50).Value = (object?)this.FacultyName ?? DBNull.Value;
+		try {
+			connection.Open();
+			comm.ExecuteNonQuery();
+		}
+		finally {
+			if (connection is not null &&
+				connection.State == System.Data.ConnectionState.Open) {
+				connection.Close();
+			}
+		}
+	}
 }

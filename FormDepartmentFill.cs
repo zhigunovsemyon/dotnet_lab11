@@ -8,7 +8,7 @@ public partial class FormDepartmentFill : Form
 
 	public DepartmentModel Model
 	{
-		get => this._model; 
+		get => this._model;
 		set
 		{
 			this._model = value;
@@ -23,8 +23,30 @@ public partial class FormDepartmentFill : Form
 		this.textBoxName.Text = this._model.Name;
 	}
 
+	private void Save()
+	{
+		if (String.IsNullOrWhiteSpace(this.textBoxName.Text)) {
+			return;
+		}
+
+		this.Model.Name = this.textBoxName.Text.Trim();
+		this.DialogResult = DialogResult.OK;
+
+		if (String.IsNullOrWhiteSpace(this.textBoxFaculty.Text)) {
+			this.Model.FacultyName = null;
+			return;
+		}
+		this.Model.FacultyName = this.textBoxFaculty.Text.Trim();
+	}
+
 	public FormDepartmentFill()
 	{
 		InitializeComponent();
+	}
+
+	private void buttonSave_Click(object sender, EventArgs e)
+	{
+		this.Save();
+		this.Close();
 	}
 }

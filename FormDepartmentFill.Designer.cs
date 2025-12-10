@@ -93,6 +93,7 @@
 			buttonSave.TabIndex = 6;
 			buttonSave.Text = "Сохранить";
 			buttonSave.UseVisualStyleBackColor = true;
+			buttonSave.Click += buttonSave_Click;
 			// 
 			// FormDepartmentFill
 			// 

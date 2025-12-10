@@ -29,7 +29,10 @@ public partial class FormMain : Form
 		=> this.Text = this.tabControlMain.SelectedTab?.Text;
 
 	private void buttonDepartmentsLoad_Click(object sender, EventArgs e)
-	{
+		=> this.LoadFromDB();
+
+	private void LoadFromDB()
+	{ 
 		this.listViewDepartments.Items.Clear();
 		try {
 			var list = DepartmentModel.List(this._sqlconn);
@@ -83,6 +86,17 @@ public partial class FormMain : Form
 		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
 			return;
 		}
+		try {
+			this._formDepartment.Model.AddToDB(this._sqlconn);
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при добавлении в базу кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.LoadFromDB();
+		}
+
 	}
 
 	private void buttonDepartmentsUpdate_Click(object sender, EventArgs e)
@@ -101,5 +115,8 @@ public partial class FormMain : Form
 		if (DialogResult.OK != this._formDepartment.ShowDialog()) {
 			return;
 		}
+
+
+		this.LoadFromDB();
 	}
 }
