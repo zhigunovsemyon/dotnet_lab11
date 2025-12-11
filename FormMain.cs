@@ -19,6 +19,8 @@ public partial class FormMain : Form
 
 	private readonly FormDepartmentFill _formDepartment = new();
 
+	private readonly FormMajorFill _formMajor = new();
+
 	public FormMain()
 	{
 		this.InitializeComponent();
@@ -79,7 +81,7 @@ public partial class FormMain : Form
 			department.DeleteFromDB(this._sqlconn);
 		}
 		catch (Exception ex) {
-			MessageBox.Show($"Ошибка при загрузке базы кафедр:\r\n{ex.Message}",
+			MessageBox.Show($"Ошибка при удалении из базы кафедр:\r\n{ex.Message}",
 				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 		finally {
@@ -104,7 +106,6 @@ public partial class FormMain : Form
 		finally {
 			this.LoadDepartmentsFromDB();
 		}
-
 	}
 
 	/// <summary> Нажатие на клавишу обновления кафедры в БД </summary>
@@ -137,23 +138,113 @@ public partial class FormMain : Form
 		}
 	}
 
+	/// <summary> Нажатие на клавишу загрузки списка специальностей</summary>
 	private void buttonMajorLoad_Click(object sender, EventArgs e)
-	{
+		=> this.LoadMajorsFromDB();
 
-	}
-
+	/// <summary> Нажатие на клавишу добавления специальности</summary>
 	private void buttonMajorAdd_Click(object sender, EventArgs e)
 	{
-
+		this._formMajor.Model = new MajorModel();
+		if (DialogResult.OK != this._formMajor.ShowDialog()) {
+			return;
+		}
+		try {
+			this._formMajor.Model.AddToDB(this._sqlconn);
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при добавлении в базу кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.LoadMajorsFromDB();
+		}
 	}
 
+	/// <summary> Нажатие на клавишу удаления специальности</summary>
 	private void buttonMajorDelete_Click(object sender, EventArgs e)
 	{
+		if (this.listViewMajors.SelectedItems.Count <= 0) {
+			return;
+		}
 
+		var lvItemIdx = this.listViewMajors.SelectedItems[0].Index;
+		var Major = this.listViewMajors.Items[lvItemIdx].Tag
+			as MajorModel;
+		Debug.Assert(Major != null);
+
+		try {
+			Major.DeleteFromDB(this._sqlconn);
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при удалении из базы специальностей:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.listViewMajors.Items.RemoveAt(lvItemIdx);
+		}
 	}
 
+	/// <summary> Нажатие на клавишу обновления специальности</summary>
 	private void buttonMajorUpdate_Click(object sender, EventArgs e)
 	{
+		if (this.listViewMajors.SelectedItems.Count <= 0) {
+			return;
+		}
 
+		var lvItemIdx = this.listViewMajors.SelectedItems[0].Index;
+		var major = this.listViewMajors.Items[lvItemIdx].Tag
+			as MajorModel;
+		Debug.Assert(major != null);
+
+		this._formMajor.Model = major;
+
+		if (DialogResult.OK != this._formMajor.ShowDialog()) {
+			return;
+		}
+
+		try {
+			this._formMajor.Model.UpdateDB(this._sqlconn);
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при обновлении в базе специальностей:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+		finally {
+			this.LoadMajorsFromDB();
+		}
+	}
+
+	/// <summary> Загрузка специальностей из БД </summary>
+	private void LoadMajorsFromDB()
+	{
+		this.listViewMajors.Items.Clear();
+		try {
+			var list = MajorModel.List(this._sqlconn);
+			foreach (var item in list) {
+				this.listViewMajors.Items.Add(MajorModelItem(item));
+			}
+		}
+		catch (Exception ex) {
+			MessageBox.Show($"Ошибка при загрузке базы кафедр:\r\n{ex.Message}",
+				"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return;
+		}
+	}
+
+	/// <summary> 
+	/// Преобразование модели специальнсоти в соответствующий элемент списка 
+	/// </summary>
+	/// <param name="model">Модель специальности</param>
+	/// <returns>Элемент списка</returns>
+	private static ListViewItem MajorModelItem(MajorModel model)
+	{
+		ListViewItem item = new(model.Id.ToString());
+		item.SubItems.Add(model.Name);
+		item.SubItems.Add(model.DepartmentId.ToString());
+		item.SubItems.Add(model.Image is null ? "" : "x");
+		item.Tag = model;
+
+		return item;
 	}
 }
