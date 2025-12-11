@@ -36,6 +36,7 @@ public partial class FormMajorFill : Form
 		this.Close();
 	}
 
+	/// <summary> Перевести содержимое полей в модель </summary>
 	private void Save()
 	{
 		var selectedItem = this.comboBoxDepartments.SelectedItem as DepartmentModel;
@@ -45,12 +46,13 @@ public partial class FormMajorFill : Form
 		}
 
 		this.Model.DepartmentId = selectedItem.Id;
-		this.Model.Name = selectedItem.Name;
+		this.Model.Name = this.textBoxName.Text;
 		this.Model.Image = null;
 
 		this.DialogResult = DialogResult.OK;
 	}
 
+	/// <summary> Перевести содержимое модели в поля </summary>
 	private void loadBoxes()
 	{
 		if (this.comboBoxDepartments.Items.Count > 0) {
