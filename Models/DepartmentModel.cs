@@ -109,4 +109,6 @@ public class DepartmentModel
 			}
 		}
 	}
+
+	public override string ToString() => $"{this.Id} {this.Name} {this.FacultyName}";
 }
