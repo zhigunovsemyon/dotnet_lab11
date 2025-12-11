@@ -74,13 +74,13 @@ public class MajorModel
 	/// <param name="connection">Соединение с БД</param>
 	public void UpdateDB(SqlConnection connection)
 	{
-		throw new NotImplementedException("MajorModel.UpdateDB()");
+		throw new NotImplementedException("MajorModel.UpdateDB() not implimented");
 	}
 
 	/// <summary> Добавление специальности в БД </summary>
 	/// <param name="connection">Соединение с сервером</param>
 	public void AddToDB(SqlConnection connection)
 	{
-		throw new NotImplementedException("MajorModel.AddToDB()");
+		throw new NotImplementedException("MajorModel.AddToDB() not implimented");
 	}
 }

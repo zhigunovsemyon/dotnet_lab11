@@ -39,9 +39,12 @@ public partial class FormMain : Form
 	private void LoadDepartmentsFromDB()
 	{
 		this.listViewDepartments.Items.Clear();
+		this._formMajor.ClearDepartmentModels();
+
 		try {
 			var list = DepartmentModel.List(this._sqlconn);
 			foreach (var item in list) {
+				this._formMajor.AddDepartmentModel(item);
 				this.listViewDepartments.Items.Add(DepartmentModelItem(item));
 			}
 		}
