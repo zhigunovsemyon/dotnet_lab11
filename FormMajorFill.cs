@@ -4,17 +4,14 @@ namespace dotnet_lab11;
 
 public partial class FormMajorFill : Form
 {
+	/// <summary> Добавить новую кафедрку в список доступных </summary>
+	/// <param name="department">Кафедра</param>
 	public void AddDepartmentModel (DepartmentModel department)
-	{
-		this.comboBoxDepartments.Items.Add (department);
-		//throw new NotImplementedException ("FormMajorFill.AddDepartmentModel");
-	}
+		=> this.comboBoxDepartments.Items.Add (department);
 
+	/// <summary> Очистить список кафедр </summary>
 	public void ClearDepartmentModels()
-	{
-		this.comboBoxDepartments.Items.Clear();
-		//throw new NotImplementedException ("FormMajorFill.ClearDepartmentModels");
-	}
+		=> this.comboBoxDepartments.Items.Clear();
 
 	private MajorModel _model = new();
 
